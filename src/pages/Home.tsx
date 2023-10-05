@@ -35,7 +35,7 @@ function Home() {
             </h2>
             <div className='flex gap-8 mt-10'>
                 <button className='bg-red-600 hover:bg-red-700 text-white-100 text-xl w-48 text-white py-3 rounded-lg' onClick={() => { navigate('/dashboard') }}>Start writing</button>
-                <button className='bg-gray-200 text-xl w-48 text-gray-700  py-3 rounded-lg' onClick={disconnect}>Explore</button>
+                <button className='bg-gray-200 text-xl w-48 text-gray-700  py-3 rounded-lg' onClick={() => { navigate('/rashi') }}>Explore</button>
             </div>
         </div>
         <div className='flex flex-col m-auto'>
