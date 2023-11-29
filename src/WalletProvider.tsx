@@ -1,4 +1,3 @@
-import { Network } from "@tronweb3/tronwallet-abstract-adapter";
 import { TronLinkAdapter } from "@tronweb3/tronwallet-adapters";
 import React, {
   createContext,

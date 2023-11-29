@@ -6,16 +6,16 @@ import { toast } from 'react-toastify'
 export const subscribeTxStatus = async (txId: string, provider: any, navigate?: NavigateFunction) => {
     let receipt = null;
     let attempts = 0;
-    let maxAttempts = 500;
+    let maxAttempts = 50;
     let revertCount = 0;
     const loaderId = toast.loading('Transaction in process...')
     while ((receipt === "REVERT" || receipt == null) && attempts < maxAttempts) {
         await new Promise((resolve) => setTimeout(resolve, 2000));
-        const transaction = await provider.trx.getTransaction(txId);
+        let transaction = null
+        try { transaction = await provider.trx.getTransaction(txId);} catch(e) { console.log(e); continue; }
         if (transaction && transaction.ret && transaction.ret.length > 0) {
           receipt = transaction.ret[0].contractRet;
         }
-        console.log("receipt: ", receipt, txId);
         if (receipt === "REVERT") {
             if(revertCount === 10) break;
             revertCount+= 1

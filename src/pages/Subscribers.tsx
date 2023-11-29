@@ -32,11 +32,18 @@ function Subscribers() {
 
   return (
     <BodyLayout>
-        <SideNav selectedTab='Subscribers' />
-        <div className='flex flex-col p-4'>
-            <h1 className='text-bold text-green-900'>
-                Subscribers
+       <SideNav selectedTab='Subscribers' />
+        <div className='flex flex-col p-4 w-full items-center'>
+            
+            <div className='flex flex-col items-center w-full h-full gap-4 overflow-scroll'>
+            <h1 className='font-black text-[48px] text-red-500 mb-7 w-[840px] font-Satoshi16px text-left '>
+                <span className='text-black-100 font-normal'>Your</span> Subscribers
             </h1>
+            
+            <div className='w-[840px] pl-1'>You don't have any subscribers yet</div>
+           
+            </div>
+            
         </div>
     </BodyLayout>
   )

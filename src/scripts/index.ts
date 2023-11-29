@@ -7,13 +7,14 @@ import { NetworkType } from '@tronweb3/tronwallet-abstract-adapter';
 import { getDescriptionAndUrl } from 'pages/utils/slice';
 import { getIpfsURL } from 'pages/utils/ipfs';
 
-//export const factoryAddress = "TWaJqUAgTo2DbfqZztFFNerRD3g7LcYQuP"
-export const factoryAddress = "TAUCdJM3UNPNN1e2z9LHDUR3WGSYAY5vGg";
+export const factoryAddress = "TJS6puKoSwg8f2oEsCTZjYsyspNwaoTe72";
 
 export const apiKey = "89d9f463-49e8-48b2-afe1-d705565d920f"
 export const factoryAbi = ThoughtEditionFactoryContract.abi;
 export const editionAbi = ThoughtEditionContract.abi;
 export const currentNetwork: NetworkType = NetworkType.Nile
+
+export const zeroAddress = "0x0000000000000000000000000000000000000000";
 
 export function getTronWebConfig(networkType: NetworkType): TronWeb {
     switch (networkType) {
@@ -58,12 +59,13 @@ export const createEdition = async (edition: ThoughtEdition, provider: any, wall
         { type: "string", value: edition.title },
         { type: "string", value: edition.imageURI },
         { type: "string", value: edition.contentURI },
-        { type: "uint256", value: edition.price }
+        { type: "uint256", value: edition.price }, 
+        { type: "address", value: zeroAddress }
     ];
 
     var options = { feeLimit: 200 * 1e6, txLocal: true };
 
-    let funcDef = "createEdition(string,string,string,uint256)";
+    let funcDef = "createEdition(string,string,string,uint256,address)";
     const tx = await provider.transactionBuilder.triggerSmartContract(
         factoryAddress,
         funcDef,

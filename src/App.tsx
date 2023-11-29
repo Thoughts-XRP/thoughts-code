@@ -11,6 +11,7 @@ import NavBar from 'components/NavBar';
 import Editor from 'pages/Editor';
 import AuthorPage from 'pages/Author';
 import ClaimedPosts from 'pages/CliamedPosts';
+import Subscribers from 'pages/Subscribers';
 // import AuthorDashboard from 'pages/AuthorDashboard';
 // import MyArticles from 'pages/MyArticles';
 // import Editor from 'pages/Editor';
@@ -33,7 +34,7 @@ function App() {
               </Auth>
             } 
           />
-          {/* <Route 
+          <Route 
             path="/subscribers" 
             element={
               <Auth>
@@ -42,7 +43,7 @@ function App() {
                 </ThemeProvider>
               </Auth>
             } 
-          /> */}
+          />
           <Route 
             path="/claimed-posts" 
             element={
