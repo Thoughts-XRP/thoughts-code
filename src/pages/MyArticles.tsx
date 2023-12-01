@@ -17,22 +17,26 @@ function MyArticles() {
   const [data, setData] = React.useState<ThoughtEdition[]>([]); // data is an array of articles
 
   const navigate = useNavigate();
-  const { address, connected, provider } = useCurrentWallet();
+  const { address, connected, provider, wallet } = useCurrentWallet();
   const { author, isAuthorLoading } = useAuthor();
 
   useEffect(() => {
     const getArticles = async () => {
-      const result = await getAuthorEditions(provider, address)
-      console.log(result)
+      const result = await getAuthorEditions(wallet, address)
+      console.log("Check Articles", result)
       setData(result)
     }
 
-    if(address && connected) getArticles()
-  }, [address, connected]);
+    if(address && connected && wallet) getArticles()
+  }, [address, connected, wallet]);
 
   useEffect(() => {
     //if (!connected || !address || !network) { navigate("/"); }
   }, [connected, address]);
+
+  if (!isAuthorLoading && author && !author.userName) {
+    return <RegisterProfile />;
+  }
 
   if (!author) {
     return (
@@ -47,10 +51,6 @@ function MyArticles() {
     );
   }
 
-  if (!isAuthorLoading && author && !author.userName) {
-    return <RegisterProfile />;
-  }
-
   return (
     <BodyLayout>
       <SideNav selectedTab="Articles" />
@@ -58,7 +58,7 @@ function MyArticles() {
       <div className="flex flex-col w-full">
         <div className="flex justify-end px-10 bg-white-100 py-4">
           <button
-            className="bg-red-600 hover:bg-red-700 text-white-100 font-bold py-2 px-6 rounded-lg cursor-pointer"
+            className="bg-teal-400 hover:bg-teal-600 text-white-100 font-bold py-2 px-6 rounded-lg cursor-pointer"
             onClick={() => navigate("/write")}
           >
             Create Article

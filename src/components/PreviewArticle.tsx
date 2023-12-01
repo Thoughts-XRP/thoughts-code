@@ -25,14 +25,14 @@ function PreviewArticle({ author, article}: PreviewArticle) {
                             <p className="text-gray-800 text-sm font-medium">
                                 {author.name}
                             </p>
-                            <Tag hover tone="red" size="small">
+                            <Tag hover tone="accent" size="small">
                                 {slice(author.walletAddress)}
                             </Tag>
                         </div>
                     </div>
                     <div className="flex gap-6">
                         {
-                            <button className="bg-red-600 hover:bg-red-700 text-white-100 font-bold py-2 px-6 rounded-lg cursor-pointer">
+                            <button className="bg-teal-400 hover:bg-teal-600 text-white-100 font-bold py-2 px-6 rounded-lg cursor-pointer">
                                 Subscribe
                             </button>
                         }
@@ -43,18 +43,18 @@ function PreviewArticle({ author, article}: PreviewArticle) {
                     <div className="mt-8 flex flex-col items-center">
                         {
                             article.coverImg ? 
-                                <img className="rounded-lg mb-6 w-[720px] h-[360px] bg-red-50" src={article.coverImg} />
-                                : <div className="rounded-lg mb-6 w-[720px] h-[360px] bg-red-50"></div>
+                                <img className="rounded-lg mb-6 w-[720px] h-[360px] bg-teal-50" src={article.coverImg} />
+                                : <div className="rounded-lg mb-6 w-[720px] h-[360px] bg-teal-50"></div>
                         }
                     </div>
 
-                    <Heading as="h1" level="1" align={"center"} color={"red"}>{article.title}</Heading>
+                    <Heading as="h1" level="1" align={"center"} color={"accent"}>{article.title}</Heading>
 
                     <div className="mt-8 flex items-center justify-between w-full space-x-4">
                         <div className="flex space-x-1">
                             <div className="cursor-pointer"
                             >
-                                <Tag hover tone="red" size="small">
+                                <Tag hover tone="accent" size="small">
                                     {slice(author.walletAddress)}
                                 </Tag>
                             </div>

@@ -36,9 +36,9 @@ function SubscribeModel({name, authorAddress, onSubscribe} : SubscribeModelProps
     <div>
         <div className="flex flex-col items-center justify-center">
             <div className="flex flex-col bg-white-100 rounded-lg w-96 h-60 p-6">
-                <p className="text-xl font-black ">Subscribe to <span className="text-red-600">@{name}</span></p>
+                <p className="text-xl font-black ">Subscribe to <span className="text-teal-600">@{name}</span></p>
                 <input onChange={(e) => setEmail(e.target.value)} className="px-4 py-3 rounded-lg outline-none border-[1px] border-gray-300 mt-8" type="text" placeholder="Enter your email" />
-                <button onClick={() => handleSubscribe(email)} className="bg-red-600 hover:bg-red-700 text-white-100 font-bold py-2 px-6 rounded-lg cursor-pointer mt-4">Subscribe</button>
+                <button onClick={() => handleSubscribe(email)} className="bg-teal-400 hover:bg-teal-600 text-white-100 font-bold py-2 px-6 rounded-lg cursor-pointer mt-4">Subscribe</button>
             </div> 
         </div> 
     </div>

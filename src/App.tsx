@@ -5,18 +5,17 @@ import { toast } from 'react-toastify'
 import React, { useMemo } from 'react';
 import Post from './pages/Article';
 import { ThemeProvider } from 'degen';
-import Auth from 'components/Auth';
-import MyArticles from 'pages/MyArticles';
-import NavBar from 'components/NavBar';
+// import MyArticles from 'pages/MyArticles';
+// import NavBar from 'components/NavBar';
 import Editor from 'pages/Editor';
 import AuthorPage from 'pages/Author';
 import ClaimedPosts from 'pages/CliamedPosts';
 import Subscribers from 'pages/Subscribers';
 // import AuthorDashboard from 'pages/AuthorDashboard';
-// import MyArticles from 'pages/MyArticles';
+import MyArticles from 'pages/MyArticles';
 // import Editor from 'pages/Editor';
 // import Subscribers from 'pages/Subscribers';
-// import Auth from 'components/Auth';
+import Auth from 'components/Auth';
 // import ClaimedPosts from 'pages/CliamedPosts';
 
 function App() {
@@ -83,7 +82,7 @@ function App() {
               <Editor />
             </Auth>
             }
-          />
+          /> 
         </Routes>
       </Router>
   );

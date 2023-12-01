@@ -28,7 +28,7 @@ export function CoverImage({ setImage }: CoverImageProps) {
     };
 
     return (
-        <div className="wrapper w-[720px] h-[360px] bg-red-50 rounded-2xl overflow-hidden relative">
+        <div className="wrapper w-[720px] h-[360px] bg-teal-50 rounded-2xl overflow-hidden relative">
         <div
             className="drop_zone px-4 py-4 flex flex-row justify-end absolute z-10 top-0 right-0"
             onDragOver={handleOnDragOver}

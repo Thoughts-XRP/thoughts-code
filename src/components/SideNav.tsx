@@ -5,7 +5,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { BrandLogo, AuthorLogo } from "../images";
 import { Tag } from "degen";
-import { useWallet } from "@tronweb3/tronwallet-adapter-react-hooks";
 
 type TabType = "Articles" | "Subscribers" | "Claimed";
 const NavData: NavBarGroupData = [
@@ -27,7 +26,6 @@ const NavData: NavBarGroupData = [
 ];
 
 function SideNav({ selectedTab }: { selectedTab: TabType }) {
-  const { disconnect } = useWallet();
   const { author } = useAuthor();
 
   const navigate = useNavigate();
@@ -52,7 +50,7 @@ function SideNav({ selectedTab }: { selectedTab: TabType }) {
           <img
             onClick={() => navigate(`/${author?.userName}`)}
             src={author?.img ? author?.img : AuthorLogo}
-            className="rounded-full h-10 w-10 bg-red-50"
+            className="rounded-full h-10 w-10 bg-teal-50"
             alt="Flowbite Logo"
           />
 
@@ -64,7 +62,7 @@ function SideNav({ selectedTab }: { selectedTab: TabType }) {
               <div className="text-sm ml-4  font-semibold">{author?.name}</div>
             )}
             <div className="ml-3">
-              <Tag size="small" tone="red">
+              <Tag size="small" tone="blue">
                 {" "}
                 @{author?.userName}{" "}
               </Tag>
@@ -72,7 +70,7 @@ function SideNav({ selectedTab }: { selectedTab: TabType }) {
           </div>
           <div className="flex  flex-grow" />
           <span
-            onClick={disconnect}
+            onClick={() =>{}}
             className="material-icons text-base px-2 pt-1 w-8 h-8 hover:bg-gray-100 rounded-full self-center cursor-pointer"
           >
             logout
@@ -101,7 +99,7 @@ export function NavBarLogo({ isHomePage = false }: { isHomePage?: boolean }) {
       />
       <span
         className={classNames(
-          "self-center text-xl font-black whitespace-nowrap text-white text-red-600",
+          "self-center text-xl font-black whitespace-nowrap text-white text-teal-600",
           {
             "text-3xl": isHomePage,
           }
@@ -137,7 +135,7 @@ function NavbarItem({ imgSrc, route, title, selectedTab }: NavBarItemProps) {
       <i className="material-icons">{imgSrc}</i>
       <span
         className={classNames("mx-3 text-left whitespace-nowrap", {
-          "text-red-600": title === selectedTab,
+          "text-teal-600": title === selectedTab,
         })}
       >
         {title}

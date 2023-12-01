@@ -7,7 +7,7 @@ const ArticleCardSkeleton = () => {
       className="border border-gray-200 rounded-xl max-w-xl overflow-hidden h-96 flex flex-col justify-between cursor-pointer hover:border-gray-300"
     >
       <div className="">
-        <div className="w-full h-48 bg-red-300" />
+        <div className="w-full h-48 bg-teal-300" />
         <p className="text-sm p-4"><Skeleton count={1} style={{ width: '112px'}} /></p>
         <h2 className="text-base font-medium text-gray-800 px-4">
             <Skeleton count={3} />

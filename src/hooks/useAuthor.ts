@@ -11,7 +11,7 @@ export type useAuthorType = {
 }
 
 export const useAuthor = (): useAuthorType => {
-    const { provider, address, connected } = useCurrentWallet();
+    const { wallet, address, connected } = useCurrentWallet();
     const [currAuthor, setCurrAuthor] = useState<any>()
     const [isAuthorLoading, setIsAuthorLoading] = useState<boolean>(true)
 
@@ -19,8 +19,7 @@ export const useAuthor = (): useAuthorType => {
         const tempAuthor = defaultAuthor
         setIsAuthorLoading(true)
         try {
-            const result = await getAuthorDetails(provider);
-           
+            const result = await getAuthorDetails(wallet);
             tempAuthor.name = result.name
             tempAuthor.userName = result.userName
             tempAuthor.description = result.description
@@ -35,8 +34,8 @@ export const useAuthor = (): useAuthorType => {
     }
 
     useEffect(() => {
-        if (address && connected) getProfile()
-    }, [address, connected])
+        if (address && connected&& wallet) getProfile()
+    }, [address, connected, wallet])
 
     return { author: currAuthor, isAuthorLoading: isAuthorLoading }
 }

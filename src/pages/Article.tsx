@@ -13,7 +13,7 @@ import Loader from "components/Loader";
 import { SkeletonLoader } from "components/Skeleton";
 import { getIpfsURL } from "pages/utils/ipfs";
 import Skeleton from "react-loading-skeleton";
-import { TronWallet, useCurrentWallet } from "WalletProvider";
+import { useCurrentWallet } from "WalletProvider";
 import {
   getAuthorDetailsFromUserName,
   getEdition,
@@ -59,28 +59,37 @@ const ArticlePage = ({
   }, [authorId]);
 
   const purchaseArticle = async () => {
-    console.log(address, connected)
+    const loaderId = toast.loading('Transaction in progress..')
     try {
       if (!address || !article.price || !connected) {
         toast.error("Something went wrong");
         return;
       }
-      const txId = await purchaseEdition(
+      const tx = await purchaseEdition(
         provider,
         wallet,
         article.price,
         articleId
       );
-      subscribeTxStatus(txId, provider);
+
+      if(tx.transactionHash) {
+        toast.success('Edition purchased successfully')
+       
+      } else {
+        toast.error("Transaction Failed");
+      }
+
     } catch (e) {
       console.error(e);
     } finally {
       setLoading(false);
+      toast.dismiss(loaderId)
+      window.location.reload()
     }
   };
 
   const handlePaidArticle = () => {
-    if (showLogin) connect();
+    if (showLogin) { connect(); window.location.reload() }
     else purchaseArticle();
   };
 
@@ -148,7 +157,7 @@ const ArticlePage = ({
         } else {
           // if user is logged in, check if user has paid for article
           setShowLogin(false);
-          const paidArticle = await getPaidArticle(provider, articleId);
+          const paidArticle = await getPaidArticle(wallet, articleId);
           if (paidArticle && paidArticle.contentURI !== "") {
             setLocked(false);
             let data = await fetch(getIpfsURL(paidArticle.contentURI)).then(
@@ -237,15 +246,15 @@ function Article({ article, author, showContent, locked }: ArticleProps) {
       <div className="mt-8 flex flex-col items-center">
         {article.coverImg ? (
           <img
-            className="rounded-lg mb-6 w-[720px] h-[360px] bg-red-200 object-cover"
+            className="rounded-lg mb-6 w-[720px] h-[360px] bg-teal-50 object-cover"
             src={article.coverImg}
           />
         ) : (
-          <div className="rounded-lg mb-6 w-[720px] h-[360px] bg-red-200"></div>
+          <div className="rounded-lg mb-6 w-[720px] h-[360px] bg-teal-50"></div>
         )}
       </div>
 
-      <Heading as="h1" level="1" align={"center"} color={"red"}>
+      <Heading as="h1" level="1" align={"center"} color={"accent"}>
         {article.title}
       </Heading>
 
@@ -266,7 +275,7 @@ function Article({ article, author, showContent, locked }: ArticleProps) {
               <div className="text-gray-600 text-sm font-bold pl-1">
                 {author.name}
               </div>
-              <Tag hover tone="red" size="small">
+              <Tag hover tone="blue" size="small">
                 {slice(author.walletAddress)}
               </Tag>
             </div>
@@ -351,7 +360,7 @@ function ArticlePageTopBar({
               </Button>
             )}
             <button
-              className="bg-red-600 hover:bg-red-700 text-white-100 font-bold py-2 px-6 rounded-lg cursor-pointer"
+              className="bg-teal-400 hover:bg-teal-600 text-white-100 font-bold py-2 px-6 rounded-lg cursor-pointer"
               onClick={handleShow}
             >
               Subscribe
@@ -385,7 +394,7 @@ function ArticlePageSkeleton({ author }: ArticlePageSkeletonProps) {
       </div>
       <div className="max-w-3xl min-w-[50vw] mx-auto py-6">
         <div className="mt-8 flex flex-col items-center">
-          <div className="rounded-lg mb-6 w-[720px] h-[360px] bg-red-200" />
+          <div className="rounded-lg mb-6 w-[720px] h-[360px] bg-teal-50" />
           <Skeleton
             style={{ height: "64px", width: "600px", borderRadius: "16px" }}
           />

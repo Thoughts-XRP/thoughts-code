@@ -64,9 +64,10 @@ function Editor() {
     const handleCreateArticle = async () => {
         let ipfsImageHash = ""
         let ipfsHash = ""
-
+        const loaderId = toast.loading('Publishing Edition')
         try {
             setLoading(true)
+            
             ipfsHash = await handleUploadJsonToIpfs(blogData)
             if (image) ipfsImageHash = await handleUploadFileToIPFS(image, new Date().toTimeString())
             console.log("Edition hash : ", ipfsHash, ipfsImageHash)
@@ -78,12 +79,18 @@ function Editor() {
             }
             const result = await createEdition(edition, provider, wallet);
             console.log("Edition publised : ", result)
-            subscribeTxStatus(result.txid, provider)
+            if (result.transactionHash) {
+                toast.success('Edition Published')
+            } else {
+                toast.error("Failed to Publish Edition");
+            }
         } catch (e) {
             console.log("Edition publised error : ", e)
-            toast.error("Failed to Publish Content")
+            toast.error("Failed to Publish Edition")
         } finally {
             setLoading(false)
+            toast.dismiss(loaderId)
+            window.location.reload()
         }
     }
 
@@ -106,9 +113,9 @@ function Editor() {
         return <div>
             <div className='flex flex-col w-screen'>
                 {/* add author img and name on top left corner and publish button on top right */}
-                <div className='flex p-4 justify-between bg-red-50 sticky top-0'>
-                    <h2 className='text-red-600'>Preview</h2>
-                    <span onClick={() => setIsPreview(false)} className='material-icons self-center hover:bg-red-200 p-2 cursor-pointer rounded-full'>close</span>
+                <div className='flex p-4 justify-between bg-teal-50 sticky top-0'>
+                    <h2 className='text-teal-600'>Preview</h2>
+                    <span onClick={() => setIsPreview(false)} className='material-icons self-center hover:bg-teal-50 p-2 cursor-pointer rounded-full'>close</span>
                 </div>
                 <PreviewArticle author={author} article={article}/>
             </div>
@@ -127,7 +134,7 @@ function Editor() {
                         <img src={author?.img} alt={author?.name} className='w-10 h-10 rounded-full' />
                         <div className='flex flex-col'>
                         <p className='px-2'>{author?.name}</p>
-                        <Tag size="small" tone="red">
+                        <Tag size="small" tone="accent">
                             {" "}
                             @{author?.userName}{" "}
                         </Tag>
@@ -148,7 +155,7 @@ function Editor() {
                             Price: {price == 0 ? " Free" : <div className='flex flex-row ml-1 items-center'>{price} <img src={TronLogo} className="h-5 w-5 ml-1"/></div>}
                         </button>
                         <button
-                            className="bg-red-600 hover:bg-red-700 text-white-100 font-bold py-2 px-6 rounded-lg cursor-pointer"
+                            className="bg-teal-400 hover:bg-teal-600 text-white-100 font-bold py-2 px-6 rounded-lg cursor-pointer"
                             onClick={handleCreateArticle}
                         >
                             Publish

@@ -58,7 +58,7 @@ function AuthorPage() {
   return (
     <div className="flex flex-col scroll-auto">
       <div className="w-screen h-screen">
-        <div className="h-[30vh] bg-red-300"></div>
+        <div className="h-[30vh] bg-teal-300"></div>
         <input
           className="rounded-full w-72 py-3 px-4 absolute top-4 right-4 outline-none"
           placeholder="Search Authors"
@@ -77,11 +77,11 @@ function AuthorPage() {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="w-80 px-4 py-2 rounded-l-lg focus:outline-none focus:ring-1 focus:ring-red-500 focus:border-transparent"
+                className="w-80 px-4 py-2 rounded-l-lg focus:outline-none focus:ring-1 focus:ring-teal-600 focus:border-transparent"
               />
               <button
                 disabled={!author}
-                className="bg-red-500 hover:bg-red-600 text-white-100  px-4 py-2 rounded-r-lg focus:outline-none focus:ring-2 focus:border-transparent"
+                className="bg-teal-500 hover:bg-red-600 text-white-100  px-4 py-2 rounded-r-lg focus:outline-none focus:ring-2 focus:border-transparent"
               >
                 Subscribe
               </button>
@@ -134,10 +134,10 @@ function AuthorProfileSection({ author }: { author: Author | undefined }) {
             </h1>
             
             <div className="flex mt-1 ">
-              <Tag hover tone="red" size="small" >
+              <Tag hover tone="accent" size="small" >
                 {`@${author.userName}`}
               </Tag>
-              <Tag hover tone="red" size="small">
+              <Tag hover tone="accent" size="small">
                 {slice(author.walletAddress)}
               </Tag>
             </div>

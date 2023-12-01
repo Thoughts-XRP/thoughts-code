@@ -36,7 +36,7 @@ function Subscribers() {
         <div className='flex flex-col p-4 w-full items-center'>
             
             <div className='flex flex-col items-center w-full h-full gap-4 overflow-scroll'>
-            <h1 className='font-black text-[48px] text-red-500 mb-7 w-[840px] font-Satoshi16px text-left '>
+            <h1 className='font-black text-[48px] text-teal-600 mb-7 w-[840px] font-Satoshi16px text-left '>
                 <span className='text-black-100 font-normal'>Your</span> Subscribers
             </h1>
             

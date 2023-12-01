@@ -33,7 +33,7 @@ const ArticleCard = ({ article, author }: ArticleCardProps) => {
       className="border border-gray-200 rounded-xl max-w-xl overflow-hidden h-96 flex flex-col justify-between cursor-pointer hover:border-gray-300"
     >
       <div className="">
-        <div className="w-full h-48 bg-red-300">
+        <div className="w-full h-48 bg-teal-300">
           {article.imageURI !== "" && (
             <img
               className="object-cover w-full h-48"
@@ -51,7 +51,7 @@ const ArticleCard = ({ article, author }: ArticleCardProps) => {
       <div className="flex items-center p-4 gap-x-1">
         <Avatar label={author.name} size="6" src={author.img} />
         <p className="px-2 font-medium text-sm">{author.name}</p>
-        <Tag hover tone="red" size="small">
+        <Tag hover tone="accent" size="small">
           {slice(author.walletAddress)}
         </Tag>
         <Tag hover tone="secondary" size="small">

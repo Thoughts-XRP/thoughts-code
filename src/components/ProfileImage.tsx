@@ -28,7 +28,7 @@ export function ProfileImage({ setImage }: ProfileImageProps) {
     };
 
     return (
-        <div className="wrapper w-[100px] h-[100px] bg-red-50 rounded-full overflow-hidden relative">
+        <div className="wrapper w-[100px] h-[100px] bg-teal-50 rounded-full overflow-hidden relative">
         <div
             className="drop_zone px-4 py-4 flex flex-row justify-end absolute z-10 top-0 right-0"
             onDragOver={handleOnDragOver}
